@@ -6,11 +6,9 @@ import Qt.labs.settings 1.0
 Item {
     id: item1
     width: 320
-    property alias buttonRead: buttonRead
     property alias buttonSearch: buttonSearch
     property alias textHost: textHost
     property alias textPort: textPort
-
 
     //    property regex validIpAddressRegex: /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/
     //    property QRegExp validHostnameRegex: /^(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9])$/;

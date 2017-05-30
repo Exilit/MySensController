@@ -58,3 +58,14 @@ void Controller::connectToHost(QString host, int port)
     }
     tcpSocket->connectToHost(host, port);
 }
+
+void Controller::handleMessage(const Message &msg)
+{
+    switch(msg.command)
+    {
+    case 1:
+        break;
+    default:
+        qDebug() << "Invalid command type";
+    }
+}

@@ -27,6 +27,8 @@ public slots:
     void connectToHost(QString host, int port);
 
 private:
+    void handleMessage(const Message &msg);
+
     QTcpSocket *tcpSocket;
     QStringList m_messageLog;
 };
