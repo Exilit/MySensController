@@ -5,8 +5,4 @@ Page1Form {
         controller.connectToHost(textHost.text, textPort.text);
         buttonRead.enabled = true;
     }
-
-    buttonRead.onClicked: {
-        controller.read();
-    }
 }
