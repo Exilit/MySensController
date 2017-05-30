@@ -28,6 +28,8 @@ public slots:
 
 private:
     void handleMessage(const Message &msg);
+    void handlePresentationMessage(const Message &msg);
+    void handleInternalMessage(const Message &msg);
 
     QTcpSocket *tcpSocket;
     QStringList m_messageLog;
