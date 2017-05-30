@@ -22,23 +22,18 @@ ApplicationWindow {
         Page1 {
         }
 
-//        Page2 {
-//            id: secondPage;
-//        }
-
-//        Page {
-//            Label {
-//                text: qsTr("Second page")
-//                anchors.centerIn: parent
-//            }
-//        }
+        Page2 {
+        }
     }
 
     footer: TabBar {
         id: tabBar
         currentIndex: swipeView.currentIndex
         TabButton {
-            text: qsTr("First")
+            text: qsTr("Main")
+        }
+        TabButton {
+            text: qsTr("Log")
         }
     }
 }
