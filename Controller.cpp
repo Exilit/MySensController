@@ -1,17 +1,18 @@
 #include "Controller.h"
 #include "MessageParser.h"
 
+#include <QTcpSocket>
 #include <QtNetwork>
 
 Controller::Controller(QObject *parent)
     : QObject(parent)
     , tcpSocket(new QTcpSocket(this))
 {
-    connect(tcpSocket, QTcpSocket::connected, this, Controller::connected);
-    connect(tcpSocket, QTcpSocket::disconnected, this, Controller::disconnected);
-    connect(tcpSocket, QTcpSocket::readyRead, this, Controller::read);
+    connect(tcpSocket, &QTcpSocket::connected, this, &Controller::connected);
+    connect(tcpSocket, &QTcpSocket::disconnected, this, &Controller::disconnected);
+    connect(tcpSocket, &QTcpSocket::readyRead, this, &Controller::read);
     typedef void (QAbstractSocket::*QAbstractSocketErrorSignal)(QAbstractSocket::SocketError);
-    connect(tcpSocket, static_cast<QAbstractSocketErrorSignal>(&QAbstractSocket::error), this, Controller::showError);
+    connect(tcpSocket, static_cast<QAbstractSocketErrorSignal>(&QAbstractSocket::error), this, &Controller::showError);
 }
 
 Controller::~Controller()
