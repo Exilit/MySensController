@@ -3,7 +3,8 @@ QT += qml quick network
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    Controller.cpp
+    Controller.cpp \
+    MessageParser.cpp
 
 RESOURCES += qml.qrc
 
@@ -32,4 +33,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES +=
 
 HEADERS += \
-    Controller.h
+    Controller.h \
+    MessageParser.h
