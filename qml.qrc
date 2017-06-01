@@ -6,5 +6,7 @@
         <file>qtquickcontrols2.conf</file>
         <file>Page2.qml</file>
         <file>Page2Form.ui.qml</file>
+        <file>BinarySensor.qml</file>
+        <file>BinarySensorForm.ui.qml</file>
     </qresource>
 </RCC>
