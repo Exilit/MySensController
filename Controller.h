@@ -3,9 +3,11 @@
 
 #include <QObject>
 #include <QAbstractSocket>
+#include <QTimer>
 
 class QTcpSocket;
 struct Message;
+class BinarySensor;
 
 class Controller : public QObject
 {
@@ -18,6 +20,9 @@ public:
 
 signals:
     void messageLogChanged();
+    void connectionEstablished();
+    void connectionLost();
+    void sensorAdded(BinarySensor *sensor);
 
 public slots:
     void read();
@@ -31,8 +36,9 @@ private:
     void handlePresentationMessage(const Message &msg);
     void handleInternalMessage(const Message &msg);
 
-    QTcpSocket *tcpSocket;
+    QTcpSocket  *tcpSocket;
     QStringList m_messageLog;
+    QList<BinarySensor*> m_sensors;
 };
 
 #endif // CONTROLLER_H

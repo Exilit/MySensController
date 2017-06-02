@@ -11,7 +11,10 @@ ApplicationWindow {
     title: qsTr("MySensor Controller")
 
     Controller {
-        id: controller
+        id: controller;
+        onConnectionEstablished: mainPage.statusIndicator.active = true;
+        onConnectionLost: mainPage.statusIndicator.active = false;
+        onSensorAdded: mainPage.addSensor(sensor);
     }
 
     SwipeView {
@@ -20,6 +23,7 @@ ApplicationWindow {
         currentIndex: tabBar.currentIndex
 
         Page1 {
+            id: mainPage
         }
 
         Page2 {

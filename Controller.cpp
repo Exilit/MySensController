@@ -1,8 +1,10 @@
 #include "Controller.h"
 #include "MessageParser.h"
+#include "BinarySensor.h"
 
 #include <QTcpSocket>
 #include <QtNetwork>
+#include <QQmlApplicationEngine>
 
 Controller::Controller(QObject *parent)
     : QObject(parent)
@@ -38,12 +40,14 @@ void Controller::connected()
 {
     qDebug() << "Connected";
     m_messageLog << tr("Connected");
+    emit connectionEstablished();
 }
 
 void Controller::disconnected()
 {
     qDebug() << "Disconnected";
     m_messageLog << tr("Disconnected");
+    emit connectionLost();
 }
 
 void Controller::showError(QAbstractSocket::SocketError err)
@@ -105,8 +109,16 @@ void Controller::handlePresentationMessage(const Message &msg)
     switch(msg.type)
     {
     case SensorBinary:
+    {
         qDebug() << QString("Node %1 has Binary Sensor with ID %2").arg(msg.nodeId).arg(msg.childSensorId);
+        BinarySensor *sensor = new BinarySensor(msg.nodeId, msg.childSensorId, SensorBinary, "Binary Sensor", this);
+        sensor->setState(true);
+
+        m_sensors << sensor;
+
+        emit sensorAdded(m_sensors.last());
         break;
+    }
     case SensorArduinoNode:
         qDebug() << QString("Node %1 is a non-repeating Arduino node").arg(msg.nodeId);
         break;
