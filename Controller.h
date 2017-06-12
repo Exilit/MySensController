@@ -7,7 +7,7 @@
 
 class QTcpSocket;
 struct Message;
-class BinarySensor;
+class Sensor;
 
 class Controller : public QObject
 {
@@ -18,11 +18,14 @@ public:
 
     ~Controller();
 
+    void send(Message msg);
+
+
 signals:
     void messageLogChanged();
     void connectionEstablished();
     void connectionLost();
-    void sensorAdded(BinarySensor *sensor);
+    void sensorAdded(Sensor *sensor);
 
 public slots:
     void read();
@@ -34,11 +37,14 @@ public slots:
 private:
     void handleMessage(const Message &msg);
     void handlePresentationMessage(const Message &msg);
+    void handleSetMessage(const Message &msg);
     void handleInternalMessage(const Message &msg);
+
+    Sensor *findSensor(int nodeId, int sensorId);
 
     QTcpSocket  *tcpSocket;
     QStringList m_messageLog;
-    QList<BinarySensor*> m_sensors;
+    QList<Sensor*> m_sensors;
 };
 
 #endif // CONTROLLER_H

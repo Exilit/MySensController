@@ -5,7 +5,8 @@ CONFIG += c++11
 SOURCES += main.cpp \
     Controller.cpp \
     MessageParser.cpp \
-    BinarySensor.cpp
+    BinarySensor.cpp \
+    Sensor.cpp
 
 RESOURCES += qml.qrc
 
@@ -36,4 +37,5 @@ DISTFILES +=
 HEADERS += \
     Controller.h \
     MessageParser.h \
-    BinarySensor.h
+    BinarySensor.h \
+    Sensor.h
